@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#070b16" />
+  <meta name="description" content="Velorex Studio — software, apps, web experiences, UI/UX and creative technology. Coming soon." />
+  <title>Velorex Studio — Coming Soon</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+    :root{
+      --bg:#f7f9ff; --bg2:#eef4ff; --surface:rgba(255,255,255,.72);
+      --text:#0b1220; --muted:#5c667a; --line:rgba(11,18,32,.10);
+      --blue:#2563eb; --cyan:#06b6d4; --violet:#7c3aed;
+      --shadow:0 20px 70px rgba(37,99,235,.12);
+    }
+    html[data-theme="dark"]{
+      --bg:#060914; --bg2:#0a1020; --surface:rgba(13,20,38,.62);
+      --text:#f5f7ff; --muted:#98a5bd; --line:rgba(255,255,255,.10);
+      --blue:#5b8cff; --cyan:#22d3ee; --violet:#9b6cff;
+      --shadow:0 20px 80px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;overflow-x:hidden;transition:.35s background,.35s color}
+    body:before{content:"";position:fixed;inset:0;z-index:-3;background:
+      radial-gradient(circle at 15% 10%,color-mix(in srgb,var(--blue) 18%,transparent),transparent 32%),
+      radial-gradient(circle at 85% 25%,color-mix(in srgb,var(--violet) 18%,transparent),transparent 30%),
+      radial-gradient(circle at 50% 90%,color-mix(in srgb,var(--cyan) 12%,transparent),transparent 32%),
+      linear-gradient(180deg,var(--bg),var(--bg2));}
+    .grid{position:fixed;inset:0;z-index:-2;opacity:.45;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:52px 52px;mask-image:linear-gradient(to bottom,black,transparent 85%)}
+    .orb{position:fixed;width:340px;height:340px;border-radius:50%;filter:blur(85px);opacity:.18;z-index:-1;animation:float 10s ease-in-out infinite}
+    .orb.one{background:var(--blue);top:5%;left:-100px}.orb.two{background:var(--violet);right:-110px;top:42%;animation-delay:-4s}.orb.three{background:var(--cyan);left:35%;bottom:-180px;animation-delay:-7s}
+    @keyframes float{50%{transform:translate(40px,35px) scale(1.12)}}
+    .wrap{width:min(1160px,calc(100% - 36px));margin:auto}
+    nav{height:82px;display:flex;align-items:center;justify-content:space-between}
+    .brand{font:700 20px "Space Grotesk",sans-serif;letter-spacing:-.5px;display:flex;align-items:center;gap:11px}
+    .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--violet) 55%,var(--cyan));box-shadow:0 0 28px color-mix(in srgb,var(--blue) 38%,transparent);position:relative}
+    .mark:after{content:"V";position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-weight:800}
+    .navright{display:flex;align-items:center;gap:12px}.navlink{color:var(--muted);text-decoration:none;font-size:14px;font-weight:600}
+    .toggle{border:1px solid var(--line);background:var(--surface);color:var(--text);width:44px;height:44px;border-radius:14px;cursor:pointer;backdrop-filter:blur(15px);font-size:18px}
+    .hero{min-height:calc(100vh - 82px);display:grid;place-items:center;text-align:center;padding:70px 0 110px}
+    .hero-inner{max-width:930px}
+    .pill{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:var(--surface);padding:9px 14px;border-radius:99px;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;backdrop-filter:blur(16px)}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--cyan);animation:pulse 1.8s infinite}@keyframes pulse{50%{opacity:.35;transform:scale(.75)}}
+    h1{font:700 clamp(55px,10vw,126px)/.86 "Space Grotesk",sans-serif;letter-spacing:-.07em;margin:30px 0 26px}
+    .grad{background:linear-gradient(90deg,var(--blue),var(--violet),var(--cyan),var(--blue));background-size:250% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}@keyframes shine{to{background-position:250% center}}
+    .lead{max-width:720px;margin:0 auto;color:var(--muted);font-size:clamp(17px,2vw,21px);line-height:1.7}
+    .actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:34px}
+    .btn{padding:14px 20px;border-radius:14px;text-decoration:none;font-weight:700;font-size:14px;border:1px solid var(--line);transition:.25s transform,.25s box-shadow}
+    .btn:hover{transform:translateY(-3px)}.primary{color:white;border:0;background:linear-gradient(110deg,var(--blue),var(--violet));box-shadow:0 12px 35px color-mix(in srgb,var(--blue) 25%,transparent)}.secondary{color:var(--text);background:var(--surface);backdrop-filter:blur(12px)}
+    section{padding:95px 0}.eyebrow{color:var(--blue);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:800}
+    h2{font:700 clamp(34px,5vw,58px)/1.05 "Space Grotesk";letter-spacing:-.045em;margin:14px 0 18px;max-width:780px}
+    .section-copy{color:var(--muted);line-height:1.8;font-size:17px;max-width:760px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:42px}
+    .card{position:relative;overflow:hidden;padding:28px;border:1px solid var(--line);border-radius:24px;background:var(--surface);backdrop-filter:blur(18px);box-shadow:var(--shadow);transition:.3s transform,.3s border-color}
+    .card:hover{transform:translateY(-6px);border-color:color-mix(in srgb,var(--blue) 55%,var(--line))}
+    .icon{font-size:24px;width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:color-mix(in srgb,var(--blue) 12%,transparent);margin-bottom:22px}
+    .card h3{font:700 20px "Space Grotesk";margin:0 0 10px}.card p{margin:0;color:var(--muted);line-height:1.7;font-size:14px}
+    .products{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:40px}
+    .feature{min-height:300px}.feature .soon{position:absolute;right:22px;top:22px;font-size:11px;letter-spacing:.12em;font-weight:800;color:var(--cyan);border:1px solid var(--line);padding:7px 10px;border-radius:99px}
+    .feature h3{font-size:30px;margin-top:85px}.feature p{max-width:560px;font-size:16px}
+    .mini-stack{display:grid;gap:18px}
+    .cta{margin:70px auto 90px;padding:54px;border-radius:30px;text-align:center;border:1px solid var(--line);background:linear-gradient(135deg,color-mix(in srgb,var(--blue) 10%,var(--surface)),color-mix(in srgb,var(--violet) 10%,var(--surface)));box-shadow:var(--shadow)}
+    .cta h2{margin:0 auto 16px}.cta p{color:var(--muted);max-width:600px;margin:0 auto 28px;line-height:1.7}
+    footer{border-top:1px solid var(--line);padding:30px 0 42px;color:var(--muted);font-size:13px}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .reveal{opacity:0;transform:translateY(24px);transition:.7s ease}.reveal.show{opacity:1;transform:none}
+    @media(max-width:850px){.cards{grid-template-columns:1fr 1fr}.products{grid-template-columns:1fr}.navlink{display:none}}
+    @media(max-width:580px){.wrap{width:min(100% - 24px,1160px)}nav{height:70px}.hero{min-height:calc(100vh - 70px);padding:45px 0 80px}.cards{grid-template-columns:1fr}h1{font-size:58px}.cta{padding:38px 20px}.feature{min-height:260px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+  
+    .venture-link{color:var(--text);text-decoration:none;font-weight:700}.venture-link:hover{color:var(--cyan)}
+    .service-fab{position:fixed;right:22px;bottom:22px;z-index:20;border:0;border-radius:18px;padding:15px 18px;color:#fff;font-weight:800;cursor:pointer;background:linear-gradient(110deg,var(--blue),var(--violet));box-shadow:0 16px 45px color-mix(in srgb,var(--blue) 32%,transparent)}
+    .modal{position:fixed;inset:0;z-index:50;display:none;place-items:center;padding:18px;background:rgba(2,6,18,.72);backdrop-filter:blur(12px)}
+    .modal.open{display:grid}.modal-box{width:min(620px,100%);max-height:90vh;overflow:auto;background:var(--bg2);border:1px solid var(--line);border-radius:26px;padding:28px;box-shadow:0 30px 100px rgba(0,0,0,.45);position:relative}
+    .modal-close{position:absolute;right:18px;top:18px;width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer;font-size:20px}
+    .modal h3{font:700 30px "Space Grotesk";margin:5px 50px 8px 0}.modal .hint{color:var(--muted);line-height:1.6;margin:0 0 22px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.04em}
+    .field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:13px;padding:13px 14px;background:var(--surface);color:var(--text);font:inherit;outline:none}.field textarea{min-height:120px;resize:vertical}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue)}
+    .send{width:100%;margin-top:16px;cursor:pointer}.small-note{color:var(--muted);font-size:11px;line-height:1.5;margin-top:10px}
+    @media(max-width:700px){footer .wrap>div:first-child{grid-template-columns:1fr!important}}
+    @media(max-width:580px){.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.service-fab{right:12px;bottom:12px}}
+
+
+    /* Match browser controls and scrollbars to the active theme. */
+    html[data-theme="dark"]{color-scheme:dark;scrollbar-color:#657aff #10192c}
+    html[data-theme="light"]{color-scheme:light;scrollbar-color:#6184e9 #e5edff}
+    .modal-box{scrollbar-width:thin;scrollbar-color:var(--blue) var(--bg2)}
+    .field select,.field option{background-color:var(--bg2);color:var(--text);color-scheme:inherit}
+    .field select{appearance:none;-webkit-appearance:none;padding-right:45px;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%235b8cff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 7 5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+    .field option{padding:10px}
+    .typed-wrap{display:inline-block;min-width:min(100%,18ch);vertical-align:bottom}
+    .type-cursor{display:inline-block;width:3px;height:.9em;background:var(--cyan);margin-left:4px;vertical-align:-.08em;animation:cursorBlink .85s steps(1) infinite}
+    @keyframes cursorBlink{50%{opacity:0}}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(prefers-reduced-motion:reduce){.type-cursor{animation:none}}
+
+  
+    /* AI Agents */
+    .ai-lab{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:30px;padding:42px;background:var(--surface);backdrop-filter:blur(18px);box-shadow:var(--shadow)}
+    .ai-lab:before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;right:-190px;top:-220px;background:radial-gradient(circle,color-mix(in srgb,var(--cyan) 30%,transparent),transparent 68%);animation:aiGlow 6s ease-in-out infinite}
+    @keyframes aiGlow{50%{transform:scale(1.25) translate(-25px,30px);opacity:.55}}
+    .ai-head{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:end;position:relative;z-index:1}
+    .ai-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 11px;border:1px solid color-mix(in srgb,var(--cyan) 35%,var(--line));border-radius:99px;color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .ai-badge i{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--cyan);animation:pulse 1.6s infinite}
+    .agent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px;position:relative;z-index:1}
+    .agent{min-height:210px;padding:24px;border:1px solid var(--line);border-radius:20px;background:color-mix(in srgb,var(--bg) 54%,transparent);position:relative;overflow:hidden;transition:.3s transform,.3s border-color,.3s box-shadow}
+    .agent:hover{transform:translateY(-7px);border-color:color-mix(in srgb,var(--cyan) 55%,var(--line));box-shadow:0 20px 45px color-mix(in srgb,var(--blue) 12%,transparent)}
+    .agent:after{content:"";position:absolute;left:-60%;bottom:-2px;width:45%;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);animation:scan 3.2s linear infinite}
+    .agent:nth-child(2):after{animation-delay:-1s}.agent:nth-child(3):after{animation-delay:-2s}
+    @keyframes scan{to{left:120%}}
+    .agent-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,color-mix(in srgb,var(--blue) 20%,transparent),color-mix(in srgb,var(--violet) 18%,transparent));border:1px solid var(--line);font-size:21px;margin-bottom:28px;animation:agentFloat 4s ease-in-out infinite}
+    .agent:nth-child(2) .agent-icon{animation-delay:-1.2s}.agent:nth-child(3) .agent-icon{animation-delay:-2.3s}
+    @keyframes agentFloat{50%{transform:translateY(-6px) rotate(2deg)}}
+    .agent h3{font:700 19px "Space Grotesk";margin:0 0 9px}.agent p{color:var(--muted);font-size:13px;line-height:1.65;margin:0}
+    .agent-status{display:flex;align-items:center;gap:7px;margin-top:18px;font-size:10px;letter-spacing:.1em;font-weight:800;color:var(--cyan);text-transform:uppercase}
+    .agent-status span{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+    .flow{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:24px;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+    .flow b{color:var(--cyan);font-size:15px}
+    @media(max-width:850px){.agent-grid{grid-template-columns:1fr}.ai-head{grid-template-columns:1fr}.ai-lab{padding:28px 20px}}
+    @media(prefers-reduced-motion:reduce){.ai-lab:before,.agent:after,.agent-icon{animation:none!important}}
+
+  
+    /* V6 Futuristic UI */
+    :root{
+      --bg:#f4f8ff;--bg2:#eaf2ff;--surface:rgba(255,255,255,.62);
+      --text:#07111f;--muted:#56657b;--line:rgba(24,103,255,.14);
+      --blue:#176bff;--cyan:#00b8d9;--violet:#7047eb;
+      --neon:#00b8d9;--shadow:0 24px 80px rgba(23,107,255,.12);
+    }
+    html[data-theme="dark"]{
+      --bg:#030611;--bg2:#07101e;--surface:rgba(8,18,36,.58);
+      --text:#edf7ff;--muted:#91a4bd;--line:rgba(72,201,255,.14);
+      --blue:#4f8cff;--cyan:#26e6ff;--violet:#9a67ff;
+      --neon:#26e6ff;--shadow:0 24px 90px rgba(0,0,0,.42);
+    }
+    body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.12;background:repeating-linear-gradient(0deg,transparent 0 3px,color-mix(in srgb,var(--cyan) 6%,transparent) 4px)}
+    .brand{letter-spacing:-.7px}.mark{clip-path:polygon(18% 0,100% 0,100% 72%,72% 100%,0 100%,0 18%);border-radius:8px}
+    .hero{position:relative}.hero-inner{position:relative}
+    .hero-inner:before,.hero-inner:after{content:"";position:absolute;width:70px;height:70px;pointer-events:none;opacity:.55}
+    .hero-inner:before{left:-45px;top:-30px;border-left:1px solid var(--cyan);border-top:1px solid var(--cyan)}
+    .hero-inner:after{right:-45px;bottom:-35px;border-right:1px solid var(--violet);border-bottom:1px solid var(--violet)}
+    .pill,.card,.ai-lab,.modal-box,.toggle{box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+    .card,.ai-lab{clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px))}
+    .card:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 20%,color-mix(in srgb,var(--cyan) 6%,transparent) 48%,transparent 75%);transform:translateX(-100%);transition:.8s}
+    .card:hover:before{transform:translateX(100%)}
+    .btn{position:relative;overflow:hidden}.primary{background:linear-gradient(110deg,var(--blue),var(--violet) 58%,var(--cyan));box-shadow:0 0 30px color-mix(in srgb,var(--blue) 25%,transparent)}
+    .primary:after{content:"";position:absolute;inset:-2px;background:linear-gradient(100deg,transparent 25%,rgba(255,255,255,.32),transparent 65%);transform:translateX(-130%);transition:.6s}.primary:hover:after{transform:translateX(130%)}
+    h1{text-shadow:0 0 50px color-mix(in srgb,var(--blue) 13%,transparent)}
+    .grad{filter:drop-shadow(0 0 20px color-mix(in srgb,var(--cyan) 16%,transparent))}
+    .eyebrow:before{content:"// ";color:var(--cyan)}
+    .section-copy{position:relative}
+    .agent{clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px))}
+    .agent-icon{box-shadow:0 0 24px color-mix(in srgb,var(--cyan) 12%,transparent)}
+    .service-fab{clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);border-radius:8px}
+    ::selection{background:var(--blue);color:#fff}
+    ::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--bg)}
+    ::-webkit-scrollbar-thumb{background:linear-gradient(var(--blue),var(--violet),var(--cyan));border:2px solid var(--bg);border-radius:10px}
+    *{scrollbar-color:var(--blue) var(--bg);scrollbar-width:thin}
+    .hud{position:absolute;left:50%;transform:translateX(-50%);bottom:25px;display:flex;align-items:center;gap:12px;color:var(--muted);font-size:9px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+    .hud-line{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan));animation:hudPulse 2s ease-in-out infinite}.hud-line:last-child{transform:rotate(180deg)}
+    @keyframes hudPulse{50%{width:76px;opacity:.35}}
+    .cyber-dots{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:-1}
+    .cyber-dots span{position:absolute;width:3px;height:3px;background:var(--cyan);border-radius:50%;box-shadow:0 0 12px var(--cyan);opacity:.35;animation:drift 8s linear infinite}
+    .cyber-dots span:nth-child(1){left:12%;top:25%}.cyber-dots span:nth-child(2){left:82%;top:20%;animation-delay:-2s}.cyber-dots span:nth-child(3){left:68%;top:75%;animation-delay:-4s}.cyber-dots span:nth-child(4){left:27%;top:80%;animation-delay:-6s}
+    @keyframes drift{50%{transform:translateY(-35px) scale(1.8);opacity:.8}}
+    @media(max-width:650px){.hero-inner:before,.hero-inner:after{display:none}.hud{bottom:12px}}
+    @media(prefers-reduced-motion:reduce){.hud-line,.cyber-dots span{animation:none!important}}
+
+  </style>
+</head>
+<body>
+  <div class="grid"></div><div class="orb one"></div><div class="orb two"></div><div class="orb three"></div>
+  <div class="wrap">
+    <nav>
+      <div class="brand"><span class="mark"></span> Velorex Studio</div>
+      <div class="navright"><a class="navlink" href="#services">Services</a><a class="navlink" href="#ai-agents">AI Agents</a><a class="navlink" href="#ventures">Ventures</a><a class="navlink" href="#about">About</a><button class="btn primary" style="padding:10px 14px;cursor:pointer" onclick="openService()">Get IT Service</button><button class="toggle" id="theme" aria-label="Toggle light and dark theme">☀️</button></div>
+    </nav>
+  </div>
+
+  <main>
+    <header class="hero wrap"><div class="cyber-dots"><span></span><span></span><span></span><span></span></div>
+      <div class="hero-inner reveal">
+        <div class="pill"><span class="dot"></span> Initializing the next digital experience</div>
+        <h1>FUTURE<br><span class="grad">LOADING.</span></h1>
+        <p class="lead">Velorex Studio engineers software, AI agents, applications and digital ventures — combining technology, intelligent automation and design to build what comes next.</p>
+        <div class="actions"><a class="btn primary" href="#services">Explore what we do →</a><a class="btn secondary" href="mailto:velorexdesign@gmail.com">Start a project</a></div>
+      </div>
+    <div class="hud"><i class="hud-line"></i><span>Velorex // Digital Systems</span><i class="hud-line"></i></div></header>
+
+    <section id="about" class="wrap reveal">
+      <div class="eyebrow">About Velorex Studio</div>
+      <h2>We build <span class="typed-wrap"><span id="typedService" class="grad" aria-hidden="true">software.</span><span class="type-cursor" aria-hidden="true"></span></span></h2><p class="sr-only">We build software, desktop applications, mobile apps, websites, UI/UX designs, and creative experiences.</p>
+      <p class="section-copy">Velorex Studio is a technology and creative studio developing our own software products, desktop applications, mobile apps and digital ventures. We also work with businesses, startups and creators to design and build custom digital solutions — from the first idea to design, development and launch.</p>
+    </section>
+
+    <section id="services" class="wrap reveal">
+      <div class="eyebrow">Capabilities</div>
+      <h2>One studio. Many ways to build.</h2>
+      <div class="cards">
+        <article class="card"><div class="icon">⌘</div><h3>Software Development</h3><p>Custom software, business tools, SaaS products, automation, APIs and purpose-built digital systems.</p></article>
+        <article class="card"><div class="icon">▣</div><h3>Desktop Applications</h3><p>Modern desktop applications and productivity tools designed around practical business requirements.</p></article>
+        <article class="card"><div class="icon">◫</div><h3>Mobile Apps</h3><p>Thoughtful mobile experiences for Android, iOS and cross-platform products.</p></article>
+        <article class="card"><div class="icon">◇</div><h3>Web Development</h3><p>Fast websites, landing pages, portals, dashboards, e-commerce experiences and custom web applications.</p></article>
+        <article class="card"><div class="icon">✦</div><h3>UI / UX Design</h3><p>Clean interfaces and intuitive user experiences for software, mobile apps, websites and digital products.</p></article>
+        <article class="card"><div class="icon">✎</div><h3>Creative Design</h3><p>Social media creatives, print design, advertisements, brand assets, presentations and marketing visuals.</p></article>
+      </div>
+    </section>
+
+
+    <section id="ai-agents" class="wrap reveal">
+      <div class="ai-lab">
+        <div class="ai-head">
+          <div>
+            <div class="ai-badge"><i></i> Ready-to-deploy AI Agents</div>
+            <h2 style="margin-bottom:12px">Put AI to work for your business.</h2>
+            <p class="section-copy" style="margin:0">Velorex Studio also offers ready-made AI agents designed to automate repetitive work, support customers and help teams operate faster. Start with a ready solution and tailor it to your workflow.</p>
+          </div>
+          <button class="btn primary" style="cursor:pointer;white-space:nowrap" onclick="openAgentEnquiry()">Explore AI Agents →</button>
+        </div>
+        <div class="agent-grid">
+          <article class="agent"><div class="agent-icon">✦</div><h3>Customer Support Agent</h3><p>AI assistance for common customer questions, lead conversations and support workflows across your digital experience.</p><div class="agent-status"><span></span> Ready to customize</div></article>
+          <article class="agent"><div class="agent-icon">◎</div><h3>Business Automation Agent</h3><p>Automate repetitive operational tasks, information handling and workflow steps with an AI-powered assistant.</p><div class="agent-status"><span></span> Ready to customize</div></article>
+          <article class="agent"><div class="agent-icon">↗</div><h3>Sales & Lead Agent</h3><p>Help capture enquiries, qualify prospects, answer initial questions and route opportunities to the right next step.</p><div class="agent-status"><span></span> Ready to customize</div></article>
+        </div>
+        <div class="flow"><span>Your workflow</span><b>→</b><span>Velorex AI Agent</span><b>→</b><span>Automated action</span><b>→</b><span>Your team</span></div>
+      </div>
+    </section>
+
+    <section id="ventures" class="wrap reveal">
+      <div class="eyebrow">Velorex Ventures</div>
+      <h2>We don't only build for clients. We build what's next.</h2>
+      <div class="products">
+        <article class="card feature"><span class="soon">COMING SOON</span><div class="icon">V</div><h3>Products by Velorex</h3><p>We're developing a growing portfolio of software, desktop applications, mobile experiences and technology ventures. More will be revealed soon.</p></article>
+        <div class="mini-stack">
+          <article class="card"><div class="icon">♫</div><h3>Velorex Music</h3><p>One of our growing ventures in the music and digital entertainment space.</p><p style="margin-top:14px"><a class="venture-link" href="https://www.velorexmusic.com" target="_blank" rel="noopener">Visit velorexmusic.com →</a></p></article>
+          <article class="card"><div class="icon">⚡</div><h3>Digital Ventures</h3><p>Ideas transformed into scalable products and new digital businesses.</p></article>
+          <article class="card"><div class="icon">∞</div><h3>IT Solutions</h3><p>Have a technology challenge? Connect with us and we'll help shape the right solution.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap reveal">
+      <div class="cta">
+        <div class="eyebrow">Build with Velorex</div>
+        <h2>Have an idea? Let's make it real.</h2>
+        <p>Software, websites, mobile apps, UI/UX or creative design — tell us what you're building and let's explore what Velorex Studio can do for you.</p>
+        <a class="btn primary" href="mailto:velorexdesign@gmail.com?subject=Project%20Enquiry%20-%20Velorex%20Studio">Start a conversation →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;padding:20px 0 35px">
+        <div><div class="brand"><span class="mark"></span> Velorex Studio</div><p style="max-width:430px;line-height:1.7">Building software, applications, digital experiences and ventures — while helping businesses solve technology and creative challenges.</p></div>
+        <div><strong style="color:var(--text)">Explore</strong><p><a class="venture-link" href="#about">About</a></p><p><a class="venture-link" href="#services">Services</a></p><p><button onclick="openService()" style="border:0;padding:0;background:none;color:var(--text);font:inherit;font-weight:700;cursor:pointer">Start a project →</button></p></div>
+        <div><strong style="color:var(--text)">Our Ventures</strong><p><a class="venture-link" href="https://www.velorexmusic.com" target="_blank" rel="noopener">Velorex Music ↗</a></p><p><a class="venture-link" href="mailto:velorexdesign@gmail.com">velorexdesign@gmail.com</a></p></div>
+      </div>
+      <div class="foot" style="padding-top:25px;border-top:1px solid var(--line)"><span>© <span id="year"></span> Velorex Studio. All rights reserved.</span><span>AI Agents • Software • Apps • Web • UI/UX • Design • Ventures</span></div>
+    </div>
+  </footer>
+
+
+  <button class="service-fab" onclick="openService()">✦ Need an IT Service?</button>
+  <div class="modal" id="serviceModal" role="dialog" aria-modal="true" aria-labelledby="serviceTitle">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeService()" aria-label="Close">×</button>
+      <div class="eyebrow">Project Enquiry</div>
+      <h3 id="serviceTitle">What can we build for you?</h3>
+      <p class="hint">Select what you need, share your requirements, and we'll prepare an email to Velorex Studio.</p>
+      <form id="serviceForm">
+        <div class="form-grid">
+          <div class="field"><label>YOUR NAME</label><input id="clientName" required placeholder="Your name"></div>
+          <div class="field"><label>EMAIL / PHONE</label><input id="clientContact" required placeholder="How can we reach you?"></div>
+          <div class="field full"><label>SERVICE REQUIRED</label>
+            <select id="serviceType" required>
+              <option value="">Select a service</option>
+              <option>Ready-made AI Agent</option><option>Custom AI Agent / Automation</option><option>Custom Software Development</option><option>Website Development</option><option>Web Application Development</option>
+              <option>Mobile App Development</option><option>Desktop Application</option><option>UI / UX Design</option>
+              <option>Graphic / Social Media Design</option><option>Print Design</option><option>Automation / IT Solution</option><option>Other IT Service</option>
+            </select>
+          </div>
+          <div class="field full"><label>PROJECT REQUIREMENTS</label><textarea id="requirements" required placeholder="Tell us about your idea, features, goals, timeline or any specific requirements..."></textarea></div>
+        </div>
+        <button class="btn primary send" type="submit">Send enquiry by email →</button>
+        <div class="small-note">This opens your device's email app with the enquiry pre-filled and addressed to velorexdesign@gmail.com.</div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const root=document.documentElement, btn=document.getElementById('theme');
+    const saved=localStorage.getItem('velorex-theme');
+    if(saved){root.dataset.theme=saved}else if(matchMedia('(prefers-color-scheme: light)').matches){root.dataset.theme='light'}
+    function icon(){btn.textContent=root.dataset.theme==='dark'?'☀️':'🌙'}
+    icon();
+    btn.addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.setItem('velorex-theme',root.dataset.theme);icon()});
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
+    document.getElementById('year').textContent=new Date().getFullYear();
+
+
+    // Type, pause, erase, and move to the next service. Respect reduced-motion settings.
+    const typed=document.getElementById('typedService');
+    const words=['software.','desktop apps.','mobile apps.','websites.','UI/UX designs.','digital ventures.','creative experiences.'];
+    if(typed && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      let wordIndex=0, letter=words[0].length, erasing=true;
+      const typeStep=()=>{
+        const word=words[wordIndex];
+        if(erasing){letter--;typed.textContent=word.slice(0,Math.max(0,letter));
+          if(letter<=0){erasing=false;wordIndex=(wordIndex+1)%words.length;setTimeout(typeStep,360);return;}
+          setTimeout(typeStep,45);
+        }else{const next=words[wordIndex];letter++;typed.textContent=next.slice(0,letter);
+          if(letter>=next.length){erasing=true;setTimeout(typeStep,1900);return;}
+          setTimeout(typeStep,85);
+        }
+      };
+      setTimeout(typeStep,2000);
+    }
+
+
+    function openAgentEnquiry(){
+      openService();
+      const select=document.getElementById('serviceType');
+      select.value='Ready-made AI Agent';
+      setTimeout(()=>document.getElementById('requirements').focus(),120);
+    }
+
+    const modal=document.getElementById('serviceModal');
+    function openService(){modal.classList.add('open');document.body.style.overflow='hidden'}
+    function closeService(){modal.classList.remove('open');document.body.style.overflow=''}
+    modal.addEventListener('click',e=>{if(e.target===modal)closeService()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeService()});
+    document.getElementById('serviceForm').addEventListener('submit',e=>{
+      e.preventDefault();
+      const name=document.getElementById('clientName').value.trim();
+      const contact=document.getElementById('clientContact').value.trim();
+      const service=document.getElementById('serviceType').value;
+      const req=document.getElementById('requirements').value.trim();
+      const subject=encodeURIComponent('Velorex Studio IT Service Enquiry — '+service);
+      const body=encodeURIComponent(
+        'Hello Velorex Studio,\\n\\nI would like to enquire about an IT service.\\n\\n'+
+        'Name: '+name+'\\nContact: '+contact+'\\nService: '+service+'\\n\\nProject Requirements:\\n'+req+
+        '\\n\\nSent from velorexstudio.com'
+      );
+      window.location.href='mailto:velorexdesign@gmail.com?subject='+subject+'&body='+body;
+    });
+
+  </script>
+</body>
+</html>
