@@ -63,7 +63,7 @@ Items 5 and 6 show a visible "Sample" tag on the page while
 |---|---|---|
 | 10 | Contact delivery | Set `CONTACT_WEBHOOK_URL`, or `RESEND_API_KEY` + `CONTACT_TO_EMAIL` + `CONTACT_FROM_EMAIL`. Until then the form says it cannot send. |
 | 11 | Hosting | Pick a host. Follow the "Before the site goes online" list in [SECURITY.md](SECURITY.md). |
-| 12 | Version control | Local Git connected to the owner-created repository. Push the verified source and confirm repository visibility. |
+| 12 | Version control | Source pushed to the owner-created repository (47c325d). Confirm repository visibility. |
 | 13 | Downloads | Every product's `downloads[].url` is `null` and `public/downloads/` does not exist. Sign and checksum installers before publishing ([SECURITY.md](SECURITY.md) section 5). |
 | 14 | Hand-drawn mockups | Only the first five products have their own mockup. The other eleven use the generic identity card. Optional polish. |
 | 15 | Next.js 16 | Needed to clear the last `npm audit` advisory. A breaking upgrade; do it separately. |
