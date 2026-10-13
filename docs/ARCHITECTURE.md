@@ -174,8 +174,8 @@ configured, so visitors aren't surprised after typing a message.
 
 - The owned production domain is `https://velorexstudio.com`; `NEXT_PUBLIC_SITE_URL` can override it before building.
 - The root `metadata` in `layout.tsx` sets the title template (`%s — Velorex Studio`), OG, Twitter, robots and `metadataBase` (`site.url`).
-- Each page exports its own `metadata` with a canonical URL.
-- `sitemap.ts` combines the static routes with every product. `robots.ts` disallows `/api/` and `/legal/`.
+- Each page exports its own `metadata` with a canonical URL. Inner pages use `lib/metadata.ts` for matching social titles, descriptions and URLs. The homepage includes factual Organization JSON-LD from `data/seo.ts`.
+- `sitemap.ts` combines the static routes with every product. `robots.ts` disallows `/api/`; legal pages remain crawlable with explicit noindex metadata.
 - The favicon (`icon.tsx`) and share card (`opengraph-image.tsx`) are generated with `next/og`, so there are no binary assets to maintain.
 
 ## 8. Security

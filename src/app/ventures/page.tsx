@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import { CTA } from "@/components/CTA";
 import { IconTile } from "@/components/Icons";
@@ -7,13 +8,13 @@ import { Ventures } from "@/components/Ventures";
 import { ventures } from "@/data/ventures";
 import { revealProps } from "@/lib/reveal";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Ventures",
   description: `Velorex Studio's ventures beyond software: ${ventures
     .map((v) => `${v.name} (${v.tagline.replace(/\.$/, "").toLowerCase()})`)
     .join(" and ")}.`,
   alternates: { canonical: "/ventures" },
-};
+});
 
 /** Host shown on the "Visit …" button, e.g. "velorexmusic.com". */
 const hostOf = (url: string) => new URL(url).host.replace(/^www\./, "");

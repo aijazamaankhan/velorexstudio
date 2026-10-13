@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -29,16 +30,11 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const product = getProduct(slug);
   if (!product) return { title: "Product not found" };
 
-  return {
+  return pageMetadata({
     title: product.name,
     description: product.tagline,
     alternates: { canonical: `/products/${product.slug}` },
-    openGraph: {
-      title: `${product.name} — Velorex Studio`,
-      description: product.tagline,
-      type: "website",
-    },
-  };
+  });
 }
 
 export default async function ProductPage({ params }: Params) {

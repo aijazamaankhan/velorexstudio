@@ -52,6 +52,9 @@ Copy `.env.example` to `.env.local`:
 | `/contact` | Contact form |
 | `/legal/privacy`, `/legal/terms`, `/legal/cookies` | Legal (placeholder copy) |
 
+Inventory and decisions: [docs/INVENTORY.md](docs/INVENTORY.md).
+SEO setup: [docs/SEO.md](docs/SEO.md).
+
 ## Editing content
 
 All content lives in `src/data/`. You never need to touch components to add
@@ -72,8 +75,8 @@ a product, a venture, a team member, a case study or a download. See
 
 ## Before launch
 
-The site still contains **clearly marked dummy data**: sample team members and
-fictional client case studies, each showing a "Sample" tag on the page. There
+The site still contains **clearly marked sample team members**. Fictional client
+case studies have been removed; the portfolio shows real own-project work. There
 is no confirmed company email or social link yet, so none is shown. Work through
 [docs/STATUS.md](docs/STATUS.md) and the security list in
 [docs/SECURITY.md](docs/SECURITY.md).

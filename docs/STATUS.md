@@ -49,12 +49,12 @@ phone width after the 7 October changes.
 | 3 | **Social profile links** (currently empty, so none are shown) | `src/data/site.ts` |
 | 4 | **Aijaz Khan's portfolio / LinkedIn links** (currently empty) | `src/data/team.ts` |
 | 5 | **Three sample team members** (Sara Mehta, Daniel Okafor, Lena Varga): replace with real people or delete | `src/data/team.ts` |
-| 6 | **Three fictional case studies** (Northwind, Lumen Health, Atelier Rowe): replace with real client work or delete | `src/data/caseStudies.ts` |
+| 6 | Fictional client case studies removed; add real approved client projects when ready | `src/data/caseStudies.ts` |
 | 7 | **Location** (currently `null`) and phone, if wanted | `src/data/site.ts` |
 | 8 | **Publish Velora 1.1.0?** The installer is built but not on the website | [PRODUCTS.md](PRODUCTS.md), `src/data/products.ts` |
 | 9 | **Legal pages**: privacy, terms and cookies are placeholder text and need to be written and reviewed | `src/app/legal/[slug]/page.tsx` |
 
-Items 5 and 6 show a visible "Sample" tag on the page while
+Item 5 shows a visible "Sample" tag on the page while
 `site.showSampleLabels` is `true`. Do not turn that off until they are replaced.
 
 ### Technical
@@ -70,6 +70,15 @@ Items 5 and 6 show a visible "Sample" tag on the page while
 | 16 | Visual check | Both themes, ~375px width, all pages. |
 
 ## Change log
+
+### 13 October 2026 - inventory and SEO
+
+- Full inventory in [INVENTORY.md](INVENTORY.md): 16 products, 2 ventures, 5 own-work entries and 4 exploration categories. Product/venture selection and pricing remain unchanged.
+- Removed Northwind Logistics, Lumen Health and Atelier Rowe from the client registry; home and work now show own-project engineering. Sample team members still await owner decisions.
+- Added consistent page-specific social metadata and factual homepage Organization structured data.
+- Allowed crawling of legal pages to expose their noindex instruction; removed misleading build-time sitemap modification dates.
+- SEO launch checks and limitations are in [SEO.md](SEO.md). Typecheck and clean build pass; 31 routes, 27 HTML pages, canonical/social tags, H1 counts, Organization JSON, legal noindex, 24 sitemap URLs and sample-client removal verified. Visual/mobile checks and hosted indexing remain unverified.
+
 
 ### 13 October 2026 - security review
 

@@ -1,3 +1,4 @@
+import { organizationSchema } from "@/data/seo";
 import Link from "next/link";
 import { Constellation } from "@/components/Constellation";
 import { CTA } from "@/components/CTA";
@@ -30,6 +31,7 @@ export default function Home() {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema).replace(/</g, "\\u003c") }} />
       <Hero />
 
       <VelocityBand words={["DESIGN", "ENGINEERING", "PRODUCTS", "AI", "WEB", "SOFTWARE"]} />

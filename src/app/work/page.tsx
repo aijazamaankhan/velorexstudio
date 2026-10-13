@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import { CTA } from "@/components/CTA";
 import { PageHero } from "@/components/PageHero";
@@ -6,12 +7,12 @@ import { CaseRow } from "@/components/WorkPreview";
 import { clientWork, experiments } from "@/data/caseStudies";
 import { revealProps } from "@/lib/reveal";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Work",
   description:
     "Selected work and experiments from Velorex Studio — the product engineering behind our own software.",
   alternates: { canonical: "/work" },
-};
+});
 
 export default function WorkPage() {
   const hasClients = clientWork.length > 0;

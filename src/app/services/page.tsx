@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import { CTA } from "@/components/CTA";
 import { IconTile } from "@/components/Icons";
@@ -10,12 +11,12 @@ import { TechnologyMarquee } from "@/components/TechnologyMarquee";
 import { services } from "@/data/services";
 import { revealProps } from "@/lib/reveal";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Services",
   description:
     "Web development, software development, AI and automation, product design, and cloud and backend engineering — built by Velorex Studio.",
   alternates: { canonical: "/services" },
-};
+});
 
 export default function ServicesPage() {
   return (

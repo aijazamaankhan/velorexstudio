@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/PageHero";
@@ -106,12 +107,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const doc = DOCS.find((d) => d.slug === slug);
   if (!doc) return { title: "Not found" };
-  return {
+  return pageMetadata({
     title: doc.title,
     description: doc.intro,
     alternates: { canonical: `/legal/${doc.slug}` },
-    robots: { index: false, follow: true },
-  };
+    robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
+  });
 }
 
 export default async function LegalPage({

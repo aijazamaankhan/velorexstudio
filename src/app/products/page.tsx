@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CTA } from "@/components/CTA";
@@ -17,12 +18,12 @@ import {
 import { products, statusLabel } from "@/data/products";
 import { revealProps } from "@/lib/reveal";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Products",
   description:
     "The Velorex software ecosystem — desktop apps, web platforms, AI tools and mobile apps, each listed with exactly where it stands, plus what we're building next.",
   alternates: { canonical: "/products" },
-};
+});
 
 export default function ProductsPage() {
   return (

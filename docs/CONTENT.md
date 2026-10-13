@@ -111,7 +111,7 @@ and `/team`.
 
 ## Work: `src/data/caseStudies.ts`
 
-- `clientWork`: client projects. Currently **three fictional samples** (Northwind Logistics, Lumen Health, Atelier Rowe) marked `sample: true`. Replace them with real projects, or delete them all to fall back to "Selected Experiments".
+- `clientWork`: empty after removing the three fictional samples on 13 October 2026. Add only real, approved client projects. Home and /work currently show own-project experiments.
 - `experiments`: Velorex's own product work (real).
 
 Each entry has `name`, `industry` (or `kind`), `year`, `icon`, `challenge`,

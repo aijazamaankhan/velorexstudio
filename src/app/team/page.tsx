@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import { CTA } from "@/components/CTA";
 import { IconTile, type IconName } from "@/components/Icons";
@@ -9,12 +10,12 @@ import { VelocityBand } from "@/components/VelocityBand";
 import { team } from "@/data/team";
 import { revealProps } from "@/lib/reveal";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Team",
   description:
     "The people behind Velorex Studio — the designers and engineers who build our products and client work.",
   alternates: { canonical: "/team" },
-};
+});
 
 const WAYS: { icon: IconName; t: string; b: string }[] = [
   {

@@ -31,8 +31,8 @@ and require an exact application/json media type (parameters are permitted).
 - Pattern scan of 84 tracked historical Git blobs found no matching private keys or common
   provider token formats. This is a limited scan, not a guarantee that every
   possible credential format is absent.
-- User input is not rendered as raw HTML. The only dangerouslySetInnerHTML call
-  uses a fixed theme initialization script. No database, login, upload endpoint
+- User input is not rendered as raw HTML. Raw HTML insertion is limited to a fixed theme initialization script and
+  escaped, internally generated Organization JSON-LD (added during the SEO pass). No database, login, upload endpoint
   or shell execution is present in the application routes reviewed.
 
 ## Remaining limits and deployment checks

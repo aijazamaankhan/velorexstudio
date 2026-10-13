@@ -1,14 +1,6 @@
 import type { IconName } from "@/components/Icons";
 
-/**
- * CASE STUDIES / SELECTED WORK
- * ────────────────────────────────────────────────────────────
- * `clientWork` currently holds THREE FICTIONAL SAMPLES (`sample: true`), shown
- * with a "Sample" tag. Replace them with real projects — only ones the client
- * has agreed to be named for — or delete them all: while `clientWork` is
- * empty, /work renders "Selected Experiments" from `experiments` instead,
- * which is Velorex's own, verifiable product engineering.
- */
+/** Real client projects only. An empty list shows our own product work. */
 
 export type CaseStudy = {
   slug: string;
@@ -27,54 +19,8 @@ export type CaseStudy = {
   sample?: boolean;
 };
 
-/* ── DUMMY CLIENT WORK — fictional companies, replace before launch ── */
-export const clientWork: CaseStudy[] = [
-  {
-    slug: "northwind-logistics",
-    name: "Northwind Logistics — Fleet Dashboard",
-    industry: "Logistics",
-    icon: "truck",
-    year: "2026",
-    challenge:
-      "Dispatchers tracked 200+ vehicles across four disconnected tools and a shared spreadsheet, so delays were spotted hours late.",
-    solution:
-      "A single real-time web dashboard with live vehicle positions, delay alerts and a dispatcher workflow designed around the busiest hour of the day.",
-    technology: ["Next.js", "TypeScript", "Node.js", "PostgreSQL"],
-    result: "Replaced four tools with one; delay alerts now surface in minutes rather than hours.",
-    accent: "#2ad4ff",
-    sample: true,
-  },
-  {
-    slug: "lumen-health",
-    name: "Lumen Health — Patient Intake Assistant",
-    industry: "Healthcare",
-    icon: "health",
-    year: "2026",
-    challenge:
-      "Clinic staff spent the first ten minutes of every appointment re-typing information patients had already written on paper forms.",
-    solution:
-      "An AI-assisted intake flow that turns a patient's own words into structured notes for staff to review, with every field editable before it is saved.",
-    technology: ["React", "Python", "AI APIs", "PostgreSQL"],
-    result: "Intake moved before the appointment, giving that time back to the consultation.",
-    accent: "#9d85ff",
-    sample: true,
-  },
-  {
-    slug: "atelier-rowe",
-    name: "Atelier Rowe — E-commerce Relaunch",
-    industry: "Retail · Fashion",
-    icon: "bag",
-    year: "2025",
-    challenge:
-      "A slow, template-based storefront that looked like every competitor and was painful to use on a phone.",
-    solution:
-      "A custom storefront with an editorial product presentation, a mobile-first checkout and a design system the in-house team can extend.",
-    technology: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
-    result: "A faster, mobile-first store the brand team can update without a developer.",
-    accent: "#ff5c8a",
-    sample: true,
-  },
-];
+/** Add only real client projects approved for publication. */
+export const clientWork: CaseStudy[] = [];
 
 export type Experiment = {
   slug: string;

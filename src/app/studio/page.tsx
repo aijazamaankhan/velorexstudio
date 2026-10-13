@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import { Constellation } from "@/components/Constellation";
 import { IconTile, type IconName } from "@/components/Icons";
@@ -11,12 +12,12 @@ import { site } from "@/data/site";
 import { revealProps } from "@/lib/reveal";
 import { Ventures } from "@/components/Ventures";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Studio",
   description:
     "Velorex Studio is a product and technology studio — how we think about software, engineering and what we're building next.",
   alternates: { canonical: "/studio" },
-};
+});
 
 export default function StudioPage() {
   return (

@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 import { Icon } from "@/components/Icons";
@@ -10,12 +11,12 @@ import { revealProps } from "@/lib/reveal";
 /* Read delivery env vars per request, not frozen at build time. */
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contact",
   description:
     "Tell Velorex Studio what you're imagining — websites, applications, desktop software, AI products and more.",
   alternates: { canonical: "/contact" },
-};
+});
 
 export default function ContactPage() {
   const configured = isDeliveryConfigured();
