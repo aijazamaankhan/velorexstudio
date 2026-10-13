@@ -92,6 +92,10 @@ claims the store itself doesn't make.
 
 ## Team: `src/data/team.ts`
 
+`showTeam` is currently `false`: sections, links and sitemap entry are hidden and
+/team returns 404. Confirmed names are Aijaz Khan, Shiraz, Aftaab and Zubair.
+Confirm the remaining roles and biographies before enabling this flag.
+
 ```ts
 {
   name: "Aijaz Khan",

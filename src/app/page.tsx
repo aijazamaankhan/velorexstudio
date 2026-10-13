@@ -1,3 +1,4 @@
+import { showTeam } from "@/data/team";
 import { organizationSchema } from "@/data/seo";
 import Link from "next/link";
 import { Constellation } from "@/components/Constellation";
@@ -144,6 +145,7 @@ export default function Home() {
       </Section>
 
       {/* ── Team ──────────────────────────────────────── */}
+      {showTeam && (
       <Section id="team">
         <Container>
           <SectionHeader
@@ -157,6 +159,7 @@ export default function Home() {
           </div>
         </Container>
       </Section>
+      )}
 
       {/* ── Other ventures ───────────────────────────── */}
       <Section tone="base" id="ventures">

@@ -57,9 +57,12 @@ entries. Real client case studies can be added with permission and verified fact
 
 ## Other placeholder content still awaiting decisions
 
-Three sample team members remain: Sara Mehta, Daniel Okafor and Lena Varga.
-They remain visibly marked Sample; Aijaz Khan is the confirmed founder entry.
+Team presentation is hidden. Confirmed names retained in data: Aijaz Khan,
+Shiraz, Aftaab and Zubair. Fictional names removed; additional roles and biographies
+await owner confirmation.
 Legal pages remain placeholders and noindex.
+
+The owner-designated coming-soon files index-17.html and index-25.html are preserved unchanged.
 
 ## Existing edition notes to reconcile
 

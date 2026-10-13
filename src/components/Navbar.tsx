@@ -29,6 +29,14 @@ export function Navbar() {
   /* Close the drawer on navigation */
   useEffect(() => setOpen(false), [pathname]);
 
+  /* A drawer hidden by the desktop breakpoint must not keep scrolling locked. */
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const closeOnDesktop = () => { if (desktop.matches) setOpen(false); };
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
+  }, []);
+
   /* Drawer: lock scroll, trap focus, close on Escape */
   useEffect(() => {
     if (!open) return;
@@ -192,11 +200,13 @@ export function Navbar() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={() => setOpen(false)}
+              aria-current={pathname.startsWith(item.href) ? "page" : undefined}
               className="drawer-item group flex items-baseline justify-between border-b border-[var(--color-edge)] py-5"
               style={{ ["--d" as string]: `${80 + i * 70}ms` }}
             >
               <span className="display display-md">{item.label}</span>
-              <span className="font-mono text-[10px] text-ink-mute">
+              <span aria-hidden className="font-mono text-[10px] text-ink-mute">
                 0{i + 1}
               </span>
             </Link>

@@ -327,7 +327,7 @@ Search for `DUMMY` and `TODO` in `src/`.
 The maintained list is [docs/STATUS.md](docs/STATUS.md). In short:
 
 - `site.ts`: owned domain configured; email (`null`), location (`null`), socials (empty)
-- `team.ts`: three sample members; Aijaz Khan's links (empty)
+- `team.ts`: team hidden; confirmed names stored, remaining roles and biographies pending.
 - `caseStudies.ts`: no published client case studies; own-project experiments are shown.
 - `products.ts`: `downloads[].url/version/size` (all `null`)
 - `legal/[slug]/page.tsx`: placeholder legal copy

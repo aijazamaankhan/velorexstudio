@@ -1,3 +1,4 @@
+import { showTeam } from "@/data/team";
 import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import { Constellation } from "@/components/Constellation";
@@ -131,6 +132,7 @@ export default function StudioPage() {
       </Section>
 
       {/* Team */}
+      {showTeam && (
       <Section tone="base" id="team">
         <Container>
           <SectionHeader
@@ -144,6 +146,7 @@ export default function StudioPage() {
           </div>
         </Container>
       </Section>
+      )}
 
       {/* Future vision */}
       <Section>

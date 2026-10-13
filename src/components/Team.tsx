@@ -1,4 +1,4 @@
-import { hiring, team, teamNote } from "@/data/team";
+import { hiring, showTeam, team, teamNote } from "@/data/team";
 import { site } from "@/data/site";
 import { Lumen } from "./Interactive";
 import { ArrowRight, SampleTag } from "./Primitives";
@@ -10,6 +10,7 @@ import { revealProps } from "@/lib/reveal";
  * layout stays honest whether there is one person or ten.
  */
 export function Team() {
+  if (!showTeam) return null;
   const solo = team.length === 1;
 
   return (

@@ -20,7 +20,7 @@ Reviewed 13 October 2026.
 - Connect the domain and verify HTTPS and www redirects on Hostinger.
 - Verify ownership in Google Search Console and submit /sitemap.xml.
 - Inspect representative URLs and validate structured data after deployment.
-- Complete the legal pages and remove/replace sample team members before launch.
+- Complete the legal pages. Team presentation is hidden and /team is excluded from the sitemap.
 - Check mobile rendering, loading performance and Core Web Vitals on the host.
 - Add real screenshots and descriptive alternative text when assets are supplied.
 - Refine product descriptions and pricing only from confirmed product details.

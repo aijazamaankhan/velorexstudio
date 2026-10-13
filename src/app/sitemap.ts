@@ -1,3 +1,4 @@
+import { showTeam } from "@/data/team";
 import type { MetadataRoute } from "next";
 import { products } from "@/data/products";
 import { site } from "@/data/site";
@@ -14,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/work", priority: 0.7, changeFrequency: "monthly" },
     { url: "/team", priority: 0.6, changeFrequency: "monthly" },
     { url: "/contact", priority: 0.6, changeFrequency: "yearly" },
-  ] as const).map((r) => ({ ...r, url: `${site.url}${r.url}` }));
+  ] as const).filter((r) => showTeam || r.url !== "/team").map((r) => ({ ...r, url: `${site.url}${r.url}` }));
 
   const productRoutes: MetadataRoute.Sitemap = products.map((p) => ({
     url: `${site.url}/products/${p.slug}`,

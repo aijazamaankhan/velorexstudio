@@ -75,7 +75,7 @@ a product, a venture, a team member, a case study or a download. See
 
 ## Before launch
 
-The site still contains **clearly marked sample team members**. Fictional client
+Team presentation is hidden for now; confirmed names are retained in the data. Fictional client
 case studies have been removed; the portfolio shows real own-project work. There
 is no confirmed company email or social link yet, so none is shown. Work through
 [docs/STATUS.md](docs/STATUS.md) and the security list in

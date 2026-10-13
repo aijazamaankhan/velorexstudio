@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import { CTA } from "@/components/CTA";
@@ -7,7 +8,7 @@ import { Container, Section, SectionHeader } from "@/components/Primitives";
 import { ScrollWords } from "@/components/ScrollWords";
 import { Team } from "@/components/Team";
 import { VelocityBand } from "@/components/VelocityBand";
-import { team } from "@/data/team";
+import { showTeam, team } from "@/data/team";
 import { revealProps } from "@/lib/reveal";
 
 export const metadata: Metadata = pageMetadata({
@@ -36,6 +37,7 @@ const WAYS: { icon: IconName; t: string; b: string }[] = [
 ];
 
 export default function TeamPage() {
+  if (!showTeam) notFound();
   const disciplines = Array.from(new Set(team.flatMap((m) => m.disciplines)));
 
   return (

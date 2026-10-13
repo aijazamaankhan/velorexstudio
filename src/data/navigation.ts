@@ -1,3 +1,4 @@
+import { showTeam } from "./team";
 import { FOOTER_PRODUCT_COUNT, products } from "./products";
 import { ventures } from "./ventures";
 
@@ -9,7 +10,7 @@ export const primaryNav: NavLink[] = [
   { label: "Services", href: "/services" },
   { label: "Studio", href: "/studio" },
   { label: "Work", href: "/work" },
-  { label: "Team", href: "/team" },
+  ...(showTeam ? [{ label: "Team", href: "/team" }] : []),
 ];
 
 export const footerNav: { heading: string; links: NavLink[] }[] = [
@@ -21,7 +22,7 @@ export const footerNav: { heading: string; links: NavLink[] }[] = [
       { label: "Services", href: "/services" },
       { label: "Work", href: "/work" },
       { label: "Studio", href: "/studio" },
-      { label: "Team", href: "/team" },
+      ...(showTeam ? [{ label: "Team", href: "/team" }] : []),
       { label: "Contact", href: "/contact" },
     ],
   },
@@ -42,7 +43,7 @@ export const footerNav: { heading: string; links: NavLink[] }[] = [
     heading: "Company",
     links: [
       { label: "Studio", href: "/studio" },
-      { label: "Team", href: "/team" },
+      ...(showTeam ? [{ label: "Team", href: "/team" }] : []),
       { label: "Contact", href: "/contact" },
     ],
   },

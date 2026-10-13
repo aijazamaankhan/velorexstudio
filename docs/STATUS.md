@@ -48,7 +48,7 @@ phone width after the 7 October changes.
 | 2 | **Company email address** (currently `null`, so no email is shown anywhere) | `src/data/site.ts` |
 | 3 | **Social profile links** (currently empty, so none are shown) | `src/data/site.ts` |
 | 4 | **Aijaz Khan's portfolio / LinkedIn links** (currently empty) | `src/data/team.ts` |
-| 5 | **Three sample team members** (Sara Mehta, Daniel Okafor, Lena Varga): replace with real people or delete | `src/data/team.ts` |
+| 5 | Team hidden; confirmed names retained. Roles, biographies and publishing decision pending | `src/data/team.ts` |
 | 6 | Fictional client case studies removed; add real approved client projects when ready | `src/data/caseStudies.ts` |
 | 7 | **Location** (currently `null`) and phone, if wanted | `src/data/site.ts` |
 | 8 | **Publish Velora 1.1.0?** The installer is built but not on the website | [PRODUCTS.md](PRODUCTS.md), `src/data/products.ts` |
@@ -70,6 +70,16 @@ Item 5 shows a visible "Sample" tag on the page while
 | 16 | Visual check | Both themes, ~375px width, all pages. |
 
 ## Change log
+
+### 13 October 2026 - team visibility and navigation
+
+- Team hidden via `showTeam = false` in `src/data/team.ts`: home/studio sections, navigation/footer links and sitemap entry removed; direct /team returns 404.
+- Removed fictional team members. Retained Aijaz Khan and owner-confirmed Shiraz, Aftaab and Zubair; new members have no invented roles or biographies.
+- Mobile menu closes when clicking the current route and when switching to desktop width; decorative link numbers are hidden from accessible names.
+- All 16 products remain In Development. index-17.html and index-25.html are owner-designated coming-soon files and must remain unchanged.
+- Product source projects remain in separate folders under Z:\AI-developed-softwares (see PRODUCTS.md).
+- Verified: typecheck, clean production build, all route checks (/team now 404), 23 sitemap URLs, and desktop/mobile navigation in both themes. Same-page clicks and desktop resize release the drawer; no browser JavaScript errors.
+
 
 ### 13 October 2026 - inventory and SEO
 

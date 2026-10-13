@@ -28,6 +28,9 @@ export type TeamMember = {
   sample?: boolean;
 };
 
+/** Hide all team presentation until the owner is ready to publish it. */
+export const showTeam = false;
+
 export const team: TeamMember[] = [
   {
     name: "Aijaz Khan",
@@ -42,48 +45,10 @@ export const team: TeamMember[] = [
     links: [],
   },
 
-  /* ── DUMMY TEAM MEMBERS — replace or delete before launch ── */
-  {
-    name: "Sara Mehta",
-    role: "Lead Product Designer",
-    initials: "SM",
-    focus:
-      "Shapes how Velorex products look and feel — interface systems, motion and the details in between.",
-    disciplines: ["UI/UX", "Design systems", "Motion"],
-    accent: "#ff5c8a",
-    links: [
-      { label: "Portfolio", href: "https://portfolio.example.com/sara" },
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/example-sara" },
-    ],
-    sample: true,
-  },
-  {
-    name: "Daniel Okafor",
-    role: "Senior Software Engineer",
-    initials: "DO",
-    focus:
-      "Works on the native engines — playback, file systems and the performance-critical paths.",
-    disciplines: ["C++", "Qt", "Systems"],
-    accent: "#2ad4ff",
-    links: [
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/example-daniel" },
-    ],
-    sample: true,
-  },
-  {
-    name: "Lena Varga",
-    role: "Full-Stack Engineer",
-    initials: "LV",
-    focus:
-      "Builds web products and backends for client projects, from API design to deployment.",
-    disciplines: ["TypeScript", "Next.js", "Cloud"],
-    accent: "#9d85ff",
-    links: [
-      { label: "Portfolio", href: "https://portfolio.example.com/lena" },
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/example-lena" },
-    ],
-    sample: true,
-  },
+  // Confirmed names; roles and biographies await the owner's details.
+  { name: "Shiraz", role: "", initials: "S", focus: "", disciplines: [], accent: "#ff5c8a", links: [] },
+  { name: "Aftaab", role: "", initials: "A", focus: "", disciplines: [], accent: "#2ad4ff", links: [] },
+  { name: "Zubair", role: "", initials: "Z", focus: "", disciplines: [], accent: "#9d85ff", links: [] },
 ];
 
 /**
