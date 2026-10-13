@@ -81,3 +81,7 @@ or revert the affected commit and redeploy. Do not overwrite Git history.
 
 Official reference checked 13 October 2026:
 [Hostinger Node.js deployment guide](https://www.hostinger.com/support/how-to-deploy-a-nodejs-website-in-hostinger/).
+
+Security validation: see [SECURITY-REVIEW.md](SECURITY-REVIEW.md). Production
+contact submissions must use the configured NEXT_PUBLIC_SITE_URL origin; a
+separate preview domain requires that origin to be set before building.

@@ -9,6 +9,7 @@ import {
   validateContact,
 } from "@/lib/contact";
 import { rateLimit } from "@/lib/rateLimit";
+import { BodyReadError, isAllowedOrigin, readBoundedBody } from "@/lib/requestSecurity";
 
 /**
  * Contact submissions.
@@ -38,14 +39,10 @@ const fail = (status: number, reason: string, message: string, extra?: object) =
 
 /** A browser form post always sends Origin; when present it must be this site. */
 function isSameOrigin(request: Request) {
-  const origin = request.headers.get("origin");
-  if (!origin) return true; // non-browser client (curl, server) — CSRF does not apply
-  const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host");
-  try {
-    return new URL(origin).host === host;
-  } catch {
-    return false;
-  }
+  const allowedOrigin = process.env.NODE_ENV === "production"
+    ? site.url
+    : new URL(request.url).origin;
+  return isAllowedOrigin(request.headers.get("origin"), allowedOrigin);
 }
 
 function clientKey(request: Request) {
@@ -79,19 +76,18 @@ export async function POST(request: Request) {
     );
   }
 
-  if (!request.headers.get("content-type")?.toLowerCase().includes("application/json")) {
+  if (!(request.headers.get("content-type")?.split(";")[0].trim().toLowerCase() === "application/json")) {
     return fail(415, "bad-request", "Send the form as JSON.");
   }
 
-  // Read as text first so the size cap applies before any parsing.
+  // Enforce the limit while streaming, including chunked requests without Content-Length.
   let raw: string;
   try {
-    raw = await request.text();
-  } catch {
-    return fail(400, "bad-request", "Malformed request.");
-  }
-  if (new TextEncoder().encode(raw).length > MAX_BODY_BYTES) {
-    return fail(413, "too-large", "That message is too large.");
+    raw = await readBoundedBody(request, MAX_BODY_BYTES);
+  } catch (error) {
+    const status = error instanceof BodyReadError ? error.status : 400;
+    return fail(status, status === 413 ? "too-large" : "bad-request",
+      status === 413 ? "That message is too large." : "Request body could not be read.");
   }
 
   let body: Record<string, unknown>;
@@ -130,6 +126,7 @@ export async function POST(request: Request) {
       }
       const res = await fetch(webhook, {
         method: "POST",
+        redirect: "error",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
         signal: AbortSignal.timeout(DELIVERY_TIMEOUT_MS),
@@ -172,7 +169,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   } catch (error) {
     // Log the reason only — never the visitor's message or address.
-    console.error("[contact] delivery failed:", error instanceof Error ? error.message : error);
+    console.error("[contact] delivery failed");
     return fail(
       502,
       "delivery",

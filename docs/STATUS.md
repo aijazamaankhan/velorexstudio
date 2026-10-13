@@ -66,10 +66,21 @@ Items 5 and 6 show a visible "Sample" tag on the page while
 | 12 | Version control | Source pushed to the owner-created repository (47c325d). Confirm repository visibility. |
 | 13 | Downloads | Every product's `downloads[].url` is `null` and `public/downloads/` does not exist. Sign and checksum installers before publishing ([SECURITY.md](SECURITY.md) section 5). |
 | 14 | Hand-drawn mockups | Only the first five products have their own mockup. The other eleven use the generic identity card. Optional polish. |
-| 15 | Next.js 16 | Needed to clear the last `npm audit` advisory. A breaking upgrade; do it separately. |
+| 15 | Dependency maintenance | PostCSS override clears the audit findings. Review/remove it when upgrading Next.js. |
 | 16 | Visual check | Both themes, ~375px width, all pages. |
 
 ## Change log
+
+### 13 October 2026 - security review
+
+- Fixed streamed body limits/timeouts, rate-limiter saturation and configured-origin validation.
+- Tightened JSON media type, delivery configuration, webhook redirects and error logging.
+- Patched bundled PostCSS using an override: npm audit now reports zero known vulnerabilities. This supersedes the earlier audit result below.
+- Passed 9 security regression tests, typecheck, clean production build, all 31 route checks, 9 HTTP rejection cases, rate-limit checks and sensitive-path 404 checks.
+- Scanned 84 historical Git blobs for common private-key/token patterns; no matches found.
+- Added security tests to GitHub checks. Hostinger infrastructure and visual checks remain unverified.
+- Full findings and limitations: [SECURITY-REVIEW.md](SECURITY-REVIEW.md).
+
 
 ### 13 October 2026
 

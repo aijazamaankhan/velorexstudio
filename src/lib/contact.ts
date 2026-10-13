@@ -119,5 +119,12 @@ export function normaliseContact(
  * pretending they were sent.
  */
 export function isDeliveryConfigured() {
-  return Boolean(process.env.CONTACT_WEBHOOK_URL || process.env.RESEND_API_KEY);
+  if (process.env.CONTACT_WEBHOOK_URL) {
+    try {
+      return new URL(process.env.CONTACT_WEBHOOK_URL).protocol === "https:";
+    } catch {
+      return false;
+    }
+  }
+  return Boolean(process.env.RESEND_API_KEY && process.env.CONTACT_TO_EMAIL && process.env.CONTACT_FROM_EMAIL);
 }

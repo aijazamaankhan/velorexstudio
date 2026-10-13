@@ -51,6 +51,8 @@ A new analytics script, video embed, map, font or image host will be **blocked**
 until it is added to the matching CSP directive in `next.config.ts`. Add the
 exact origin, never `*`.
 
+Latest review and validation: [SECURITY-REVIEW.md](SECURITY-REVIEW.md).
+
 ## 3. Contact API (`src/app/api/contact/route.ts`)
 
 Checks run in this order. Each one was tested against the production build.
@@ -61,7 +63,8 @@ Checks run in this order. Each one was tested against the production build.
 | More than 5 submissions in 10 minutes from one address | 429 with `Retry-After` |
 | Delivery is not configured | 501 (the form says so up front) |
 | Body is not JSON | 415 |
-| Body is larger than 16 KB | 413 |
+| Body exceeds 16 KB while streaming | 413 |
+| Body read exceeds five seconds | 408 |
 | Body is not a JSON object | 400 |
 | Hidden honeypot field is filled (bots) | 400 |
 | A field is missing, too long, not text, or a select value is not one of the form's options | 422 |
@@ -72,8 +75,8 @@ Also:
 - Values are trimmed and control characters are stripped from single-line
   fields, so nothing can inject extra lines into the email subject.
 - A webhook URL must be `https://`.
-- On failure only the error reason is logged, never the visitor's message or
-  email address.
+- On delivery failure only a generic failure marker is logged, never upstream
+  exception strings, visitor messages or email addresses.
 - Shared validation lives in `src/lib/contact.ts` and runs on both the browser
   and the server. The server never trusts the browser's check.
 
@@ -120,10 +123,9 @@ Run `npm audit` before each release.
 
 - `next` was updated from 15.5.4 to **15.5.27** on 7 October 2026, which cleared
   a critical advisory.
-- One advisory remains: an old `postcss` bundled **inside** Next.js 15. It is
-  used at build time on this project's own CSS, not on visitor input. Clearing
-  it means moving to Next.js 16, which is a breaking upgrade and should be done
-  as its own task.
+- On 13 October 2026, a targeted npm override updated Next.js's PostCSS to
+  8.5.30. The clean production build passes and npm audit reports zero known
+  vulnerabilities. Revisit the override when upgrading Next.js.
 
 ## 7. Before the site goes online
 

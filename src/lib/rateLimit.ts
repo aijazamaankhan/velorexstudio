@@ -21,13 +21,14 @@ export function rateLimit(
 ): { ok: boolean; retryAfterSeconds: number } {
   const now = Date.now();
 
-  // Keep the map bounded so a flood of distinct keys cannot grow memory forever.
-  if (windows.size > MAX_KEYS) {
+  // Prune expired entries, but never erase active limits under an address flood.
+  if (windows.size >= MAX_KEYS) {
     for (const [k, w] of windows) if (w.resetAt <= now) windows.delete(k);
-    if (windows.size > MAX_KEYS) windows.clear();
   }
-
   const current = windows.get(key);
+  if (!current && windows.size >= MAX_KEYS) {
+    return { ok: false, retryAfterSeconds: Math.max(1, Math.ceil(windowMs / 1000)) };
+  }
   if (!current || current.resetAt <= now) {
     windows.set(key, { count: 1, resetAt: now + windowMs });
     return { ok: true, retryAfterSeconds: 0 };
