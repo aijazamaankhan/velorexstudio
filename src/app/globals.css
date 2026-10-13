@@ -1,0 +1,1030 @@
+@import "tailwindcss";
+
+/* ============================================================
+   VELOREX DESIGN SYSTEM
+   Tokens are the single source of truth. Dark is primary.
+   ============================================================ */
+
+@theme {
+  /* — Surfaces (deep graphite stack) — */
+  --color-void: #050507;
+  --color-base: #090a0f;
+  --color-raise: #101116;
+  --color-panel: #161821;
+  --color-edge: #24263180;
+
+  /* — Ink — */
+  --color-ink: #f5f6fa;
+  --color-ink-dim: #a4a8b8;
+  --color-ink-mute: #6b7086;
+
+  /* — Signature accent: Velorex violet → electric blue — */
+  --color-violet: #7c5cff;
+  --color-violet-hi: #9d85ff;
+  --color-electric: #2ad4ff;
+  --color-plasma: #ff5c8a;
+
+  /* — Type — */
+  --font-display: var(--font-space), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-face), ui-monospace, monospace;
+
+  /* — Motion — */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-swift: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+/* Light theme — optional, dark remains the brand experience */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-void: #ffffff;
+  --color-base: #f7f7fa;
+  --color-raise: #ffffff;
+  --color-panel: #f1f2f6;
+  --color-edge: #1113201a;
+  --color-ink: #0b0c10;
+  --color-ink-dim: #4a4f60;
+  --color-ink-mute: #626779;
+  --color-violet: #5b39e8;
+  --color-violet-hi: #6d4df2;
+  --color-electric: #0077a8;
+  --color-plasma: #d42a5f;
+}
+
+/* ── Light-mode contrast fixes ─────────────────────────────
+   Product/section accents are authored as hex values for the dark theme and
+   applied inline (e.g. style="color:#2ad4ff"). On white those bright tints
+   fall below readable contrast, so light mode remaps each one to a deeper
+   shade of the same hue. Matching on the inline style keeps every component
+   untouched — add a line here if a new accent colour is introduced. */
+/* `.dark-island` (the app mockups) is intentionally dark in both themes,
+   so it keeps the original bright accents.
+   Server-rendered markup serialises as "color:#hex"; after client-side
+   navigation the browser writes "color: rgb(r, g, b)" — match both. */
+:root[data-theme="light"] [style*="color:#2ad4ff"]:not(.dark-island *),
+:root[data-theme="light"] [style*="color: rgb(42, 212, 255)"]:not(.dark-island *) { color: #0077a8 !important; }
+:root[data-theme="light"] [style*="color:#9d85ff"]:not(.dark-island *),
+:root[data-theme="light"] [style*="color: rgb(157, 133, 255)"]:not(.dark-island *),
+:root[data-theme="light"] [style*="color:#7c5cff"]:not(.dark-island *),
+:root[data-theme="light"] [style*="color: rgb(124, 92, 255)"]:not(.dark-island *),
+:root[data-theme="light"] [style*="color:#c3b4ff"]:not(.dark-island *),
+:root[data-theme="light"] [style*="color: rgb(195, 180, 255)"]:not(.dark-island *) { color: #5b39e8 !important; }
+:root[data-theme="light"] [style*="color:#ffb547"]:not(.dark-island *),
+:root[data-theme="light"] [style*="color: rgb(255, 181, 71)"]:not(.dark-island *) { color: #a35d00 !important; }
+:root[data-theme="light"] [style*="color:#34d399"]:not(.dark-island *),
+:root[data-theme="light"] [style*="color: rgb(52, 211, 153)"]:not(.dark-island *) { color: #047857 !important; }
+:root[data-theme="light"] [style*="color:#ff5c8a"]:not(.dark-island *),
+:root[data-theme="light"] [style*="color: rgb(255, 92, 138)"]:not(.dark-island *) { color: #c2255c !important; }
+:root[data-theme="light"] [style*="color:#ff6b35"]:not(.dark-island *),
+:root[data-theme="light"] [style*="color: rgb(255, 107, 53)"]:not(.dark-island *) { color: #c44a10 !important; }
+:root[data-theme="light"] [style*="color:#c4915e"]:not(.dark-island *),
+:root[data-theme="light"] [style*="color: rgb(196, 145, 94)"]:not(.dark-island *) { color: #8b5e2f !important; }
+
+/* SVG diagrams drawn with dark-theme fills */
+:root[data-theme="light"] svg [fill="#f5f6fa"]:not(.dark-island *),
+:root[data-theme="light"] svg [fill="#ffffff"]:not(.dark-island *),
+:root[data-theme="light"] svg [fill="#fff"]:not(.dark-island *) { fill: var(--color-ink); }
+:root[data-theme="light"] svg [stroke="#ffffff"]:not(.dark-island *) { stroke: var(--color-ink); }
+:root[data-theme="light"] svg [fill="#a4a8b8"]:not(.dark-island *) { fill: var(--color-ink-dim); }
+:root[data-theme="light"] svg [fill="#090a0f"]:not(.dark-island *) { fill: var(--color-void); }
+:root[data-theme="light"] svg [fill="#c3b4ff"]:not(.dark-island *) { fill: var(--color-violet); }
+:root[data-theme="light"] svg [fill="#9d85ff"]:not(.dark-island *) { fill: var(--color-violet); }
+:root[data-theme="light"] svg [fill="#2ad4ff"]:not(.dark-island *) { fill: var(--color-electric); }
+:root[data-theme="light"] svg [stroke="#2ad4ff"]:not(.dark-island *) { stroke: var(--color-electric); }
+:root[data-theme="light"] svg [stroke="#9d85ff"]:not(.dark-island *) { stroke: var(--color-violet); }
+
+/* Dark islands (app mockups) keep the dark palette in both themes. */
+:root[data-theme="light"] .dark-island {
+  --color-void: #050507;
+  --color-base: #090a0f;
+  --color-raise: #101116;
+  --color-panel: #161821;
+  --color-edge: #24263180;
+  --color-ink: #f5f6fa;
+  --color-ink-dim: #a4a8b8;
+  --color-ink-mute: #6b7086;
+  --color-violet: #7c5cff;
+  --color-electric: #2ad4ff;
+  color: var(--color-ink);
+}
+
+/* Outlined band text and scroll-lit words need more presence on white */
+:root[data-theme="light"] .vband-outline {
+  -webkit-text-stroke-color: color-mix(in oklab, var(--color-ink) 45%, transparent);
+}
+:root[data-theme="light"] .sw {
+  --sw-dim: 0.22;
+}
+
+/* Light-mode adjustments for surfaces tuned on dark */
+:root[data-theme="light"] .panel {
+  background: linear-gradient(180deg, #00000004, transparent 40%), var(--color-raise);
+  box-shadow: 0 1px 2px #0b0c100a, 0 18px 50px -30px #0b0c1026;
+}
+:root[data-theme="light"] .grid-texture {
+  background-image:
+    linear-gradient(to right, #0b0c100b 1px, transparent 1px),
+    linear-gradient(to bottom, #0b0c100b 1px, transparent 1px);
+}
+:root[data-theme="light"] .btn-ghost,
+:root[data-theme="light"] .field {
+  background: #0b0c1005;
+}
+:root[data-theme="light"] .cursor-dot,
+:root[data-theme="light"] .cursor-ring {
+  mix-blend-mode: normal;
+}
+:root[data-theme="light"] .cursor-dot {
+  background: var(--color-violet);
+}
+:root[data-theme="light"] .cursor-ring {
+  border-color: color-mix(in oklab, var(--color-violet) 60%, transparent);
+}
+:root[data-theme="light"] .cursor-label {
+  color: var(--color-violet);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border-color: var(--color-edge);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-violet) 40%, transparent);
+  color: var(--color-ink);
+}
+
+/* Focus — always visible, never removed */
+:focus-visible {
+  outline: 2px solid var(--color-electric);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  translate: -50% -150%;
+  z-index: 200;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-panel);
+  border: 1px solid var(--color-violet);
+  border-radius: 0 0 0.75rem 0.75rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: translate 0.3s var(--ease-out-expo);
+}
+.skip-link:focus {
+  translate: -50% 0;
+}
+
+/* Custom scrollbar — subtle, on-brand */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+::-webkit-scrollbar-thumb {
+  background: #23252f;
+  border-radius: 99px;
+  border: 2px solid var(--color-void);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #33364a;
+}
+
+/* ============================================================
+   TYPOGRAPHY PRIMITIVES
+   ============================================================ */
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+/* Fluid hero — enormous on desktop, never overflows on mobile */
+.display-hero {
+  font-size: clamp(2.75rem, 10.5vw, 9.5rem);
+}
+.display-xl {
+  font-size: clamp(2.25rem, 7vw, 6rem);
+}
+.display-lg {
+  font-size: clamp(1.9rem, 5vw, 4rem);
+}
+.display-md {
+  font-size: clamp(1.5rem, 3.2vw, 2.5rem);
+}
+
+/* Statement: sentence-length display copy. Headlines use .display; anything
+   longer than a few words uses this — lighter weight, natural tracking,
+   comfortable leading, so it reads as text rather than a wall. */
+.statement {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.35rem, 2.3vw, 1.9rem);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--color-ink);
+  text-wrap: pretty;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-ink-mute);
+}
+
+.lede {
+  font-size: clamp(1rem, 1.35vw, 1.1875rem);
+  line-height: 1.65;
+  color: var(--color-ink-dim);
+  text-wrap: pretty;
+}
+
+/* Accent text gradient */
+.grad-text {
+  background: linear-gradient(
+    100deg,
+    var(--color-ink) 0%,
+    var(--color-violet-hi) 45%,
+    var(--color-electric) 78%,
+    var(--color-ink) 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: grad-drift 9s ease-in-out infinite;
+}
+@keyframes grad-drift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ============================================================
+   SURFACES & BORDERS
+   ============================================================ */
+
+.hairline {
+  border: 1px solid var(--color-edge);
+}
+
+/* Gradient-bordered panel — the signature Velorex card */
+.panel {
+  position: relative;
+  background:
+    linear-gradient(180deg, #ffffff08 0%, #ffffff02 40%, transparent 100%),
+    var(--color-raise);
+  border: 1px solid var(--color-edge);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Light sweep that follows the cursor — driven by --mx/--my */
+.lumen {
+  position: relative;
+}
+.lumen::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    240px circle at var(--mx, 50%) var(--my, 0%),
+    color-mix(in oklab, var(--accent, var(--color-violet)) 70%, transparent),
+    transparent 70%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.45s var(--ease-swift);
+  pointer-events: none;
+  z-index: 3;
+}
+.lumen:hover::before,
+.lumen:focus-within::before {
+  opacity: 1;
+}
+
+/* Inner glow wash on hover */
+.lumen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 0%),
+    color-mix(in oklab, var(--accent, var(--color-violet)) 13%, transparent),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-swift);
+  pointer-events: none;
+  z-index: 0;
+}
+.lumen:hover::after,
+.lumen:focus-within::after {
+  opacity: 1;
+}
+
+/* Grid texture */
+.grid-texture {
+  background-image:
+    linear-gradient(to right, #ffffff08 1px, transparent 1px),
+    linear-gradient(to bottom, #ffffff08 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 20%, transparent 78%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 20%, transparent 78%);
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.9s var(--ease-out-expo),
+    transform 0.9s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+[data-reveal="in"] {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* Per-line hero entrance */
+.rise > * {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, 0.9em, 0) rotate(1.5deg);
+  animation: rise-in 1.15s var(--ease-out-expo) forwards;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes rise-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-up {
+  opacity: 0;
+  animation: fade-up 1s var(--ease-out-expo) forwards;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translate3d(0, 20px, 0); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   MARQUEE
+   ============================================================ */
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--speed, 46s) linear infinite;
+}
+.marquee-host:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+.marquee-reverse .marquee-track {
+  animation-direction: reverse;
+}
+
+/* Edge fade for marquees / horizontal rails */
+.edge-fade {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+/* ============================================================
+   HORIZONTAL RAIL (product showcase)
+   ============================================================ */
+
+.rail {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior-x: contain;
+}
+.rail::-webkit-scrollbar {
+  display: none;
+}
+.rail > * {
+  scroll-snap-align: center;
+  flex: 0 0 auto;
+}
+
+/* ============================================================
+   ANIMATED LINE / PIPELINE
+   ============================================================ */
+
+.draw-line {
+  stroke-dasharray: var(--len, 1000);
+  stroke-dashoffset: var(--len, 1000);
+  transition: stroke-dashoffset 1.6s var(--ease-out-expo);
+}
+[data-reveal="in"] .draw-line {
+  stroke-dashoffset: 0;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.35; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+@keyframes float-y {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -12px, 0); }
+}
+@keyframes breathe {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.85; }
+}
+@keyframes shimmer {
+  to { background-position: 200% 0; }
+}
+
+/* Aurora hero lighting */
+@keyframes aurora-a {
+  0%, 100% { transform: translate3d(-8%, 0, 0) scale(1); }
+  50% { transform: translate3d(10%, -6%, 0) scale(1.18); }
+}
+@keyframes aurora-b {
+  0%, 100% { transform: translate3d(6%, 4%, 0) scale(1.1); }
+  50% { transform: translate3d(-9%, -3%, 0) scale(0.92); }
+}
+
+/* Scanning bar (recovery mockup) */
+@keyframes scan-y {
+  0% { transform: translateY(-10%); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateY(1000%); opacity: 0; }
+}
+
+/* Audio bars (music mockup) */
+@keyframes eq-bar {
+  0%, 100% { transform: scaleY(0.28); }
+  50% { transform: scaleY(1); }
+}
+
+/* Marching ants (Pixel Studio selection) */
+@keyframes ants {
+  to { stroke-dashoffset: -10; }
+}
+
+/* Caret (Design OS command bar) */
+@keyframes caret {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.6rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  transition:
+    transform 0.4s var(--ease-swift),
+    background-color 0.35s var(--ease-swift),
+    border-color 0.35s var(--ease-swift),
+    color 0.35s var(--ease-swift),
+    box-shadow 0.45s var(--ease-swift);
+  will-change: transform;
+}
+
+.btn-primary {
+  background: var(--color-ink);
+  color: var(--color-void);
+  border: 1px solid transparent;
+}
+.btn-primary:hover {
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--color-violet) 60%, transparent),
+    0 14px 44px -12px color-mix(in oklab, var(--color-violet) 75%, transparent);
+}
+
+.btn-ghost {
+  background: #ffffff05;
+  color: var(--color-ink);
+  border: 1px solid var(--color-edge);
+  backdrop-filter: blur(10px);
+}
+.btn-ghost:hover {
+  background: #ffffff0d;
+  border-color: color-mix(in oklab, var(--color-violet) 55%, transparent);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Arrow nudge on any button/link hover */
+.btn .arr,
+.lnk .arr {
+  transition: transform 0.4s var(--ease-swift);
+}
+.btn:hover .arr,
+.lnk:hover .arr {
+  transform: translateX(4px);
+}
+.btn .arr-down {
+  transition: transform 0.4s var(--ease-swift);
+}
+.btn:hover .arr-down {
+  transform: translateY(3px);
+}
+
+/* Underline-grow link */
+.lnk {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.lnk::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease-swift);
+}
+.lnk:hover::after,
+.lnk:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+
+.nav-item {
+  position: relative;
+  padding: 0.4rem 0.2rem;
+  color: var(--color-ink-dim);
+  transition: color 0.3s var(--ease-swift);
+}
+.nav-item:hover,
+.nav-item[data-active="true"] {
+  color: var(--color-ink);
+}
+.nav-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-violet), var(--color-electric));
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.45s var(--ease-swift);
+}
+.nav-item:hover::after,
+.nav-item[data-active="true"]::after {
+  transform: scaleX(1);
+}
+
+/* Mobile drawer stagger */
+.drawer-item {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  animation: drawer-in 0.65s var(--ease-out-expo) forwards;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes drawer-in {
+  to { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   CUSTOM CURSOR (desktop, pointer:fine only)
+   ============================================================ */
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 300;
+  border-radius: 999px;
+  mix-blend-mode: difference;
+}
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  margin: -3px 0 0 -3px;
+}
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #ffffff90;
+  margin: -17px 0 0 -17px;
+  transition:
+    width 0.35s var(--ease-swift),
+    height 0.35s var(--ease-swift),
+    margin 0.35s var(--ease-swift),
+    background-color 0.35s var(--ease-swift),
+    border-color 0.35s var(--ease-swift);
+}
+.cursor-ring[data-state="link"] {
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+  background: #ffffff18;
+}
+.cursor-ring[data-state="label"] {
+  width: 92px;
+  height: 92px;
+  margin: -46px 0 0 -46px;
+  background: #ffffff14;
+  border-color: #ffffffcc;
+}
+.cursor-label {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   FORMS
+   ============================================================ */
+
+.field {
+  width: 100%;
+  background: #ffffff06;
+  border: 1px solid var(--color-edge);
+  border-radius: 0.75rem;
+  padding: 0.95rem 1.1rem;
+  color: var(--color-ink);
+  font-size: 0.9375rem;
+  font-family: inherit;
+  transition:
+    border-color 0.3s var(--ease-swift),
+    background-color 0.3s var(--ease-swift),
+    box-shadow 0.3s var(--ease-swift);
+}
+.field::placeholder {
+  color: var(--color-ink-mute);
+}
+.field:hover {
+  background: #ffffff0a;
+}
+.field:focus {
+  outline: none;
+  border-color: color-mix(in oklab, var(--color-violet) 70%, transparent);
+  background: #ffffff0a;
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-violet) 14%, transparent);
+}
+.field[aria-invalid="true"] {
+  border-color: var(--color-plasma);
+}
+.field[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-plasma) 16%, transparent);
+}
+select.field {
+  appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 1.1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+select.field option {
+  background: var(--color-panel);
+  color: var(--color-ink);
+}
+
+/* ============================================================
+   MOTION LAYER 2 — cinematic effects
+   ============================================================ */
+
+/* Page transition — template.tsx remounts per route */
+.page-enter {
+  animation: page-in 0.75s var(--ease-out-expo) both;
+}
+@keyframes page-in {
+  from { opacity: 0; transform: translate3d(0, 18px, 0); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Heading wipe: display headings rise through a mask */
+h2.display[data-reveal],
+blockquote.display [data-reveal] {
+  clip-path: inset(0 -6% 100% -6%);
+  transform: translate3d(0, 0.35em, 0);
+  transition:
+    clip-path 1.2s var(--ease-out-expo),
+    transform 1.2s var(--ease-out-expo),
+    opacity 0.6s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+h2.display[data-reveal="in"],
+blockquote.display [data-reveal="in"] {
+  clip-path: inset(-12% -6% -22% -6%);
+  transform: none;
+}
+
+/* Cursor spotlight on the hero */
+.hero-spot {
+  background: radial-gradient(
+    620px circle at var(--hx, 50%) var(--hy, 35%),
+    color-mix(in oklab, var(--color-violet) 16%, transparent),
+    transparent 62%
+  );
+  transition: opacity 0.6s var(--ease-swift);
+}
+
+/* Shine sweep — product visuals + primary buttons */
+.shine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgb(255 255 255 / 0.09) 48%,
+    rgb(255 255 255 / 0.02) 54%,
+    transparent 62%
+  );
+  transform: translate3d(-110%, 0, 0);
+  transition: transform 1.3s var(--ease-swift);
+}
+.group:hover .shine {
+  transform: translate3d(110%, 0, 0);
+}
+.btn-primary {
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    color-mix(in oklab, var(--color-violet) 22%, transparent) 50%,
+    transparent 70%
+  );
+  transform: translate3d(-120%, 0, 0);
+  transition: transform 0.9s var(--ease-swift);
+}
+.btn-primary:hover::after {
+  transform: translate3d(120%, 0, 0);
+}
+
+/* Velocity band */
+.vband {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  will-change: transform;
+}
+.vband-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in oklab, var(--color-ink) 28%, transparent);
+}
+
+/* Scroll-driven effects — progressive enhancement only.
+   Browsers without scroll timelines simply show the final state. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* Hero recedes as you scroll away */
+    .hero-exit {
+      animation: hero-exit linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 85vh;
+    }
+    @keyframes hero-exit {
+      to {
+        transform: translate3d(0, -10vh, 0) scale(0.93);
+        opacity: 0;
+      }
+    }
+
+    /* Philosophy: each line lights as it crosses the viewport */
+    .sw {
+      opacity: var(--sw-dim, 0.14);
+      animation: sw-light linear both;
+      animation-timeline: view();
+      animation-range: entry 60% cover 42%;
+    }
+    @keyframes sw-light {
+      to { opacity: 1; }
+    }
+
+    /* Process spine fills with scroll */
+    .spine-fill {
+      transform-origin: top;
+      animation: spine-fill linear both;
+      animation-timeline: view();
+      animation-range: cover 18% cover 72%;
+    }
+    @keyframes spine-fill {
+      from { transform: scaleY(0); }
+      to { transform: scaleY(1); }
+    }
+
+    /* Product mockups drift against the scroll (parallax) */
+    .parallax {
+      animation: parallax linear both;
+      animation-timeline: view();
+    }
+    @keyframes parallax {
+      from { transform: translate3d(0, 48px, 0); }
+      to { transform: translate3d(0, -48px, 0); }
+    }
+  }
+}
+@supports not (animation-timeline: scroll()) {
+  .spine-fill { transform: scaleY(1); }
+}
+
+/* Split-card product stack fans out on hover */
+.group:hover [style*="--fan"] {
+  transform: var(--fan) !important;
+}
+
+/* ============================================================
+   ICON TILES
+   ============================================================ */
+
+.icon-tile {
+  transition:
+    transform 0.6s var(--ease-swift),
+    box-shadow 0.6s var(--ease-swift),
+    border-color 0.6s var(--ease-swift);
+}
+.group:hover .icon-tile,
+.group:focus-within .icon-tile {
+  transform: translate3d(0, -3px, 0) rotate(-4deg);
+  border-color: color-mix(in oklab, var(--accent) 70%, transparent);
+  box-shadow: 0 12px 30px -10px color-mix(in oklab, var(--accent) 70%, transparent);
+}
+/* A light that travels once around the border on hover */
+.icon-tile-ring {
+  padding: 1px;
+  background: conic-gradient(
+    from var(--ring-angle, 0deg),
+    transparent 0 70%,
+    var(--accent) 85%,
+    transparent 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-swift);
+}
+@property --ring-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+.group:hover .icon-tile-ring {
+  opacity: 1;
+  animation: ring-spin 1.6s linear infinite;
+}
+@keyframes ring-spin {
+  to { --ring-angle: 360deg; }
+}
+/* Icon strokes draw themselves when the tile scrolls into view */
+[data-reveal] .icon-tile svg * {
+  stroke-dasharray: 160;
+  stroke-dashoffset: 160;
+  transition: stroke-dashoffset 1.4s var(--ease-out-expo);
+  transition-delay: calc(var(--reveal-delay, 0ms) + 200ms);
+}
+[data-reveal="in"] .icon-tile svg * {
+  stroke-dashoffset: 0;
+}
+
+/* ============================================================
+   REDUCED MOTION — honour it everywhere
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  .vband { transform: none !important; }
+  .icon-tile svg * { stroke-dashoffset: 0 !important; }
+  .rise > *,
+  .fade-up,
+  .drawer-item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}
